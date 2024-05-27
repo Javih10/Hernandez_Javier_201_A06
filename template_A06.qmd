@@ -165,8 +165,8 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
-points_per_game <- sapply(points_per_game, function(x)round(x,2))
-points_per_game
+points_per_game <- sapply(points_per_game, function(x){round(x, 2)})
+points_per_game 
 
 ```
 
@@ -191,21 +191,19 @@ Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a r
 ```{r}
 rounding <- function(int){
   if(int < 100){
-    a <- round(int/10)*10
+    a <- round(int/10,digits = 0)*10
     return(a)   
   }else if(int < 1000){
-    return(round(int/100) * 100)
+    return(round(int/100,digits = 0) * 100)
   }else{
-    return(round(int/1000) * 1000)
+    return(round(int/1000, digits = 0) * 1000)
   }
 }
 
-rounding(91)
 
-#MARGIN = 1:2
-#round <- apply(mat_rand,MARGIN, rounding)
-
-
+MARGIN = 1:2
+mat_rand <- apply(mat_rand,MARGIN = 1:2, rounding)
+mat_rand
 ```
 
 
@@ -230,7 +228,10 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
-
+for (i in 3:ncol(max_temps)){
+  avg <- mean(max_temps[[i]])
+  print(avg)
+}
 
 ```
 
@@ -246,6 +247,7 @@ Create three new data frames by slicing the data by state.
 No need to print any output here.
 
 ```{r}
+
 
 ```
 
@@ -284,10 +286,9 @@ sum_of <- function(int){
   if(int < 10){
     return(int)
   }else{
-    return((int %% 10) + sum_of(int %% 10))
+    return((int %% 10) + sum_of(int %/% 10))
   }
 }
-
-    
+sum_of(935068)
 ```
 
