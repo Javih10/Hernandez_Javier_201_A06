@@ -273,6 +273,20 @@ Example (this is NOT the answer just an example of what goes in the {}):
 Note: This code should still run successfully even if the numbers were to change.
 
 ```{r}
+medians <- list()
+
+
+for (i in 1:nrow(Colorado)){
+  temps <- Colorado[i,][3:length(Colorado[i,])]
+  year <- Colorado[i,]$year
+  medians[as.character(year)] <-  median(as.numeric(temps))
+}
+max_t <- which.max(medians)
+
+min_t <- which.min(medians)
+
+
+print(sprintf("The maximum median annual temperature of %s occurred in %s and the minimum median annual temperature of %s occurred in %s.",medians[max_t],names(max_t),medians[min_t],names(min_t) ))
 
 ```
 
