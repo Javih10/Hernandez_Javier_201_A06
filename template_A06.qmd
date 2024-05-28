@@ -248,6 +248,10 @@ No need to print any output here.
 
 ```{r}
 
+new_frame <- as.data.frame(max_temps)
+Colorado <- new_frame[new_frame$state == 'CO',]
+Ohio <- new_frame[new_frame$state == 'OH',]
+Virginia <- new_frame[new_frame$state == 'VA',]
 
 ```
 
@@ -289,6 +293,7 @@ sum_of <- function(int){
     return((int %% 10) + sum_of(int %/% 10))
   }
 }
+
 sum_of(935068)
 ```
 
